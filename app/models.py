@@ -42,3 +42,19 @@ class Lesson(models.Model):
 
     def __str__(self):
         return self.title
+
+class Schedule(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
+
+class Grade(models.Model):
+    title = models.IntegerField(max_length=3, )
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
+
